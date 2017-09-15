@@ -1,0 +1,1 @@
+export { default as ClosedCard } from '../src/ClosedCard'
