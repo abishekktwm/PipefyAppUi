@@ -1,12 +1,9 @@
-import React from 'react';
+import { configure } from '@storybook/react';
 
-import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+const req = require.context('../', true, /\.stories\.js$/)
 
-import ClosedCard from './CardRelated/ClosedCard';
+function loadStories() {
+  req.keys().forEach((filename) => req(filename))
+}
 
-const ClosedCardStorie = storiesOf('Card Related', module);
-ClosedCardStorie.addDecorator(withKnobs);
-ClosedCardStorie.add('Closed Card', () => <ClosedCard
-  title={text('Title', 'This is the cards title!')}
-  />);
+configure(loadStories, module);

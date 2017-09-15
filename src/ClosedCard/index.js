@@ -1,9 +1,13 @@
 // @flow
 
 import React from 'react';
+import ParentCardsList from './ParentCardsList';
 
 type Props = {
-  title: string
+  title: string,
+  late: boolean,
+  expired: boolean,
+  parentCardNames: Array<string>
 };
 
 export default (props: Props) => (
@@ -16,8 +20,8 @@ export default (props: Props) => (
           <span className="pp-tooltip" data-title="Product Review" style={{background: 'rgb(0, 204, 255)'}}></span>
         </div>
         <div className="pp-cards-badges">
-          <label className="pp-badges-warning">LATE</label>
-          <label className="pp-badges-danger">EXPIRED</label>
+          { props.late && <label className="pp-badges-warning">LATE</label> }
+          { props.expired && <label className="pp-badges-danger">EXPIRED</label> }
         </div>
       </div>
     </div>
@@ -47,14 +51,7 @@ export default (props: Props) => (
         </div>
       </div>
     </div>
-    <div className="pp-parent-card-title">
-      <ul>
-        <li>
-          <span className="pp-trigger-subtasks-sm pp-ico-bold-arrow-right"></span>
-          Card parent name
-        </li>
-      </ul>
-    </div>
+    {!!props.parentCardNames.length && <ParentCardsList names={props.parentCardNames}/>}
   </div>
 </div>
 );
